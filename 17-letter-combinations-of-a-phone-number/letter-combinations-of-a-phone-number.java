@@ -1,18 +1,15 @@
 class Solution {
     static String[] map = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    public List<String> letterCombinations(String digits, String combination) {
-        List<String> ans = new ArrayList<>();
-
+    public List<String> letterCombinations(String digits, String combination, List<String> ans) {
         if (digits.isEmpty()) {
-            List<String> com = new ArrayList<>();
-            com.add(combination);
-            return com;
+            ans.add(combination);
+            return ans;
         }
 
         int digit = digits.charAt(0) - '0';
 
         for (int i = 0; i < map[digit].length(); i++) { 
-            ans.addAll(letterCombinations(digits.substring(1), combination + map[digit].charAt(i)));
+            letterCombinations(digits.substring(1), combination + map[digit].charAt(i), ans);
         }
 
         return ans;
@@ -21,6 +18,6 @@ class Solution {
         if (digits.isEmpty()) {
             return new ArrayList<>();
         }
-        return letterCombinations(digits, "");
+        return letterCombinations(digits, "", new ArrayList<>());
     }
 }
