@@ -12,8 +12,7 @@ class Solution {
         int digit = digits.charAt(0) - '0';
 
         for (int i = 0; i < map[digit].length(); i++) { 
-            List<String> combinations = letterCombinations(digits.substring(1), combination + map[digit].charAt(i));
-            ans.addAll(combinations);
+            ans.addAll(letterCombinations(digits.substring(1), combination + map[digit].charAt(i)));
         }
 
         return ans;
