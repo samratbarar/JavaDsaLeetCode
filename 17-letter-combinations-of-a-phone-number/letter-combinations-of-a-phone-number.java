@@ -1,9 +1,9 @@
 class Solution {
     static String[] map = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    public List<String> letterCombinations(String digits, String combination, List<String> ans) {
+    public void letterCombinations(String digits, String combination, List<String> ans) {
         if (digits.isEmpty()) {
             ans.add(combination);
-            return ans;
+            return;
         }
 
         int digit = digits.charAt(0) - '0';
@@ -11,13 +11,15 @@ class Solution {
         for (int i = 0; i < map[digit].length(); i++) { 
             letterCombinations(digits.substring(1), combination + map[digit].charAt(i), ans);
         }
-
-        return ans;
     }
     public List<String> letterCombinations(String digits) {
         if (digits.isEmpty()) {
             return new ArrayList<>();
         }
-        return letterCombinations(digits, "", new ArrayList<>());
+        List<String> ans = new ArrayList<>();
+
+        letterCombinations(digits, "", ans);
+
+        return ans;
     }
 }
