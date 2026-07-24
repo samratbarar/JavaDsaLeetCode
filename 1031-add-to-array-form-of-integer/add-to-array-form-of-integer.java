@@ -1,6 +1,6 @@
 class Solution {
     public List<Integer> addToArrayForm(int[] num, int k) {
-        List<Integer> ans = new LinkedList<>();
+        LinkedList<Integer> ans = new LinkedList<>();
 
         int i;
 
