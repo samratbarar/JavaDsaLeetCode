@@ -24,9 +24,9 @@ class Solution {
 
                     if (solver(board, row, col + 1)) {
                         return true;
+                    } else {
+                        board[row][col] = '.';
                     }
-                    
-                    board[row][col] = '.';
                 }
             }
         } else {
@@ -62,6 +62,8 @@ class Solution {
     }
 
     public void solveSudoku(char[][] board) {
-        solver(board, 0, 0);
+        if(!solver(board, 0, 0)) {
+            System.out.println("Cannot solve this sudoku");
+        }
     }
 }
