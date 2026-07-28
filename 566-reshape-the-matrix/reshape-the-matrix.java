@@ -6,17 +6,12 @@ class Solution {
 
         int[][] ans = new int[r][c];
 
-        int row = 0, col = 0;
+        int idx = 0;
 
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
-                if (row < r && col < c) {
-                    ans[row][col++] = mat[i][j];
-                } else if (row < r) {
-                    col = 0;
-                    row++;
-                    j--;                    
-                }
+                ans[idx / c][idx % c] = mat[i][j];
+                idx++;
             }
         }
 
