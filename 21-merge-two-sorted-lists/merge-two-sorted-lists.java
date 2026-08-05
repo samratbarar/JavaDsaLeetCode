@@ -18,8 +18,8 @@ class Solution {
             return list1;
         }
         
-        ListNode dummyHead = new ListNode();
-        ListNode tail = dummyHead;
+        ListNode ans = new ListNode();
+        ListNode tail = ans;
 
         while (list1 != null && list2 != null) {
             if (list1.val < list2.val) {
@@ -35,6 +35,6 @@ class Solution {
 
         tail.next = (list1 != null) ? list1 : list2;
 
-        return dummyHead.next;
+        return ans.next;
     }
 }
