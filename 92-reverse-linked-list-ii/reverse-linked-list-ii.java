@@ -10,73 +10,40 @@
  */
  class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        if (head == null || left == right) {
+        if (left == right) {
             return head;
         }
 
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
+        ListNode currNode = head;
+        ListNode prevNode = null;
 
-        ListNode startingPart = dummy;
-
-        // move startingPart before left position
-        for (int i = 1; i < left; i++) {
-            startingPart = startingPart.next;
+        for (int i = 0; currNode != null && i < left - 1; i++) {
+            prevNode = currNode;
+            currNode = currNode.next;
         }
 
+        ListNode last = prevNode;
+        ListNode newEnd = currNode;
+        ListNode nextNode = currNode.next;
 
-        ListNode leftNode = startingPart.next;
+        for (int i = 0; currNode != null && i < right - left + 1; i++) {
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
 
-        ListNode prev = null;
-        ListNode curr = leftNode;
-
-
-        // reverse left to right
-        for (int i = 0; i <= right - left; i++) {
-
-            ListNode nextNode = curr.next;
-
-            curr.next = prev;
-
-            prev = curr;
-            curr = nextNode;
+            if (nextNode != null) {
+                nextNode = nextNode.next;
+            }
         }
 
+        if (last != null) {
+            last.next = prevNode;
+        } else {
+            head = prevNode;
+        }
 
-        // connect
-        startingPart.next = prev;
-        leftNode.next = curr;
+        newEnd.next = currNode;
 
-
-        return dummy.next;
+        return head;
     }
 }
-// class Solution {
-//     public ListNode reverseBetween(ListNode head, int left, int right) {
-//         if (head == null || head.next == null) {
-//            return head; 
-//         }
-
-//         ListNode startingPart = head;
-//         ListNode prev = head.next;
-
-//         while (prev.val != left) {
-//             startingPart = startingPart.next;
-//             prev = prev.next;
-//         }
-
-//         ListNode leftNode = prev;
-//         ListNode curr = prev.next;
-//         while (prev.val != right) {
-//             ListNode nextNode = curr.next;
-//             curr.next = prev;
-//             prev = curr;
-//             curr = nextNode;
-//         }
-
-//         startingPart.next = prev;
-//         leftNode.next = curr;
-
-//         return head;
-//     }
-// }
