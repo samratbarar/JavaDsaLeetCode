@@ -3,25 +3,21 @@ class Solution {
         int[] ans = new int[Math.min(nums1.length, nums2.length)];
         int idx = 0;
 
-        Arrays.sort(nums1);
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < nums1.length; i++) {
+            set.add(nums1[i]);
+        }
+
         Arrays.sort(nums2);
 
-        int idx2 = 0;
-        for (int i = 0; i < nums1.length; i++) {
-            if (i != 0 && nums1[i] == nums1[i - 1]) {
+        for (int i = 0; i < nums2.length; i++) {
+            if (i != 0 && nums2[i] == nums2[i - 1]) {
                 continue;
             }
 
-            for (int j = idx2; j < nums2.length; j++) {
-                if (nums1[i] == nums2[j]) {
-                    ans[idx++] = nums1[i];
-                    idx2 = j + 1;
-                    break;
-                }
-            }
-
-            if (idx2 == nums2.length) {
-                break;
+            if (set.contains(nums2[i])) {
+                ans[idx++] = nums2[i];
             }
         }
 
