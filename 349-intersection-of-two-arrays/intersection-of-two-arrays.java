@@ -20,7 +20,7 @@ class Solution {
                 }
             }
 
-            if (idx == nums2.length) {
+            if (idx2 == nums2.length) {
                 break;
             }
         }
