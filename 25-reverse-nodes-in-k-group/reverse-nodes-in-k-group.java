@@ -16,20 +16,15 @@ class Solution {
 
         ListNode currNode = head;
         ListNode prevNode = null;
-        boolean isReversable = true;
         ListNode checker = head;
 
-        for (int i = 0 ; i < k; i++) {
-            if (checker != null) {
-                checker = checker.next;
-            } else {
-                isReversable = false;
-            }
-        }
-
         while (true) {
-            if (!isReversable) {
-                break;
+            for (int i = 0; i < k; i++) {
+                if (checker == null) {
+                    return head;
+                }
+
+                checker = checker.next;
             }
 
             ListNode last = prevNode;
@@ -43,12 +38,6 @@ class Solution {
 
                 if (nextNode != null) {
                     nextNode = nextNode.next;
-                }
-
-                if (checker != null) {
-                    checker = checker.next;
-                } else {
-                    isReversable = false;
                 }
             }
 
