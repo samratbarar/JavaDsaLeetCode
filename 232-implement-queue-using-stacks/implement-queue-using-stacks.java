@@ -1,6 +1,6 @@
 class MyQueue {
-    Stack<Integer> first;
-    Stack<Integer> second;
+    private Stack<Integer> first;
+    private Stack<Integer> second;
     
     public MyQueue() {
         first = new Stack<>();
