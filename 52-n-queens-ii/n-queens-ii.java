@@ -7,13 +7,6 @@ class Solution {
             }
         }
 
-        // Vertical
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][col] == 'Q') {
-                return false;
-            }
-        }
-
         // Upper left
         int r = row;
         for (int c = col; r >= 0 && c >= 0; r--, c--) {
