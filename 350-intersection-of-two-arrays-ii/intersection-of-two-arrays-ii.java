@@ -14,10 +14,10 @@ class Solution {
         ArrayList<Integer> ans = new ArrayList<>();
 
         for (int num : nums2) {
-            if (map.containsKey(num) && map.get(num) > 0) {
+            int count = map.getOrDefault(num, 0);
+            if (count > 0) {
                 ans.add(num);
-                int val = map.get(num);
-                map.put(num, val-1);
+                map.put(num, count-1);
             }
         }
 
