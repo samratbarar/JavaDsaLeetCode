@@ -4,11 +4,7 @@ class Solution {
         int n = nums.length;
 
         for (int num : nums) {
-            if (map.containsKey(num)) {
-                map.put(num, map.get(num) + 1);
-            } else {
-                map.put(num, 1);
-            }
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
         Set<Integer> keys = map.keySet();
