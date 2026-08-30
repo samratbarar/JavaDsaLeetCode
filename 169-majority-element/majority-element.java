@@ -7,9 +7,7 @@ class Solution {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        Set<Integer> keys = map.keySet();
-
-        for (int k : keys) {
+        for (int k : map.keySet()) {
             if ((n / 2) < map.get(k)) {
                 return k;
             }
