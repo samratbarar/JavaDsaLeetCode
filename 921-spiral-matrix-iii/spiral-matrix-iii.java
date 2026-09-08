@@ -39,7 +39,7 @@ class Solution {
             steps++;
 
             // left
-            for (int i = steps; i > 0; i--) {
+            for (int i = 0; i < steps; i++) {
                 if (currRow >= 0 && currRow < rows && currCol >= 0 && currCol < cols) {
                     ans[count][0] = currRow;
                     ans[count][1] = currCol;
@@ -53,7 +53,7 @@ class Solution {
             }
 
             // up
-            for (int i = steps; i > 0; i--) {
+            for (int i = 0; i < steps; i++) {
                 if (currRow >= 0 && currRow < rows && currCol >= 0 && currCol < cols) {
                     ans[count][0] = currRow;
                     ans[count][1] = currCol;
