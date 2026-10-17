@@ -32,7 +32,6 @@ class Solution {
 
         while (!childs.isEmpty()) {
             int levelSize = childs.size();
-            List<Integer> level = new ArrayList<>();
 
             for (int i = 0; i < levelSize; i++) {
                 Node node = childs.remove();
