@@ -27,7 +27,7 @@ class Solution {
 
         while (!childs.isEmpty()) {
             int levelSize = childs.size();
-            double sum = 0;
+            long sum = 0;
 
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = childs.remove();
@@ -43,7 +43,7 @@ class Solution {
                 sum += node.val;
             }
 
-            ans.add(sum / levelSize);
+            ans.add((double)sum / levelSize);
         }
 
         return ans;
