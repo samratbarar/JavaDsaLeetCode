@@ -22,7 +22,7 @@ class Solution {
             return ans;
         }
 
-        Queue<TreeNode> childs = new LinkedList<>();
+        Deque<TreeNode> childs = new LinkedList<>();
         childs.offer(root);
         boolean alter = false;
 
@@ -30,26 +30,38 @@ class Solution {
             int levelSize = childs.size();
             List<Integer> level = new ArrayList<>();
 
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = childs.remove();
-            
-                if (node.left != null) {
-                    childs.add(node.left);
-                }
-
-                if (node.right != null) {
-                    childs.add(node.right);
-                }
-
-                level.add(node.val);
-            }
-
             if (alter) {
-                Collections.reverse(level);
-                alter = false;
+                for (int i = 0; i < levelSize; i++) {
+                    TreeNode node = childs.removeLast();
+            
+                    if (node.right != null) {
+                        childs.addFirst(node.right);
+                    }
+                    
+                    if (node.left != null) {
+                        childs.addFirst(node.left);
+                    }
+
+
+                    level.add(node.val);
+                }
             } else {
-                alter = true;
+                for (int i = 0; i < levelSize; i++) {
+                    TreeNode node = childs.removeFirst();
+            
+                    if (node.left != null) {
+                        childs.addLast(node.left);
+                    }
+
+                    if (node.right != null) {
+                        childs.addLast(node.right);
+                    }
+
+                    level.add(node.val);
+                }
             }
+
+            alter = !alter;
 
             ans.add(level);
         }
