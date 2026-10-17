@@ -14,58 +14,52 @@
  * }
  */
 class Solution {
-    public boolean isCousins(TreeNode root, int x, int y) {
-        if (root == null) {
+    public TreeNode findNode(TreeNode node, int value) {
+        if (node == null) {
+            return null;
+        }
+
+        if (node.val == value) {
+            return node;
+        }
+
+        TreeNode left = findNode(node.left, value);
+        if (left != null) {
+            return left;
+        }
+
+        return findNode(node.right, value);
+    }
+
+    public int level(TreeNode node, TreeNode levNode, int lev) {
+        if (node == null) {
+            return 0;
+        }
+
+        if (node == levNode) {
+            return lev;
+        }
+
+        int levOfNode = level(node.left, levNode, lev+1);
+        if (levOfNode != 0) {
+            return levOfNode;
+        }
+
+        return level(node.right, levNode, lev+1);
+    }
+
+    public boolean isSiblings(TreeNode node, TreeNode x, TreeNode y) {
+        if (node == null) {
             return false;
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root); 
+        return ((node.left == x && node.right == y) || (node.left == y && node.right == x) || isSiblings(node.left, x, y) || isSiblings(node.right, x, y));
+    }
 
-        while (!queue.isEmpty()) {
-            int levelSize = queue.size();
-            boolean isXPresent = false;
-            boolean isYPresent = false;
+    public boolean isCousins(TreeNode root, int x, int y) {
+        TreeNode xNode = findNode(root, x);
+        TreeNode yNode = findNode(root, y);
 
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = queue.poll();
-
-                if (node.left != null && node.right != null) {
-                    if ((node.left.val == x && node.right.val == y) || (node.right.val == x && node.left.val == y)) {
-                        return false;
-                    }
-                }   
-
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-            
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-
-                if (node.val == x) {
-                    isXPresent = true;
-                }
-
-                if (node.val == y) {
-                    isYPresent = true;
-                }
-            }
-
-            if (isXPresent && isYPresent) {
-                return true;
-            }
-
-            if (isXPresent) {
-                return false;
-            }
-    
-            if (isYPresent) {
-                return false;
-            }
-        }
-
-        return false;
+        return (level(root, xNode, 0) == level(root, yNode, 0) && (!isSiblings(root, xNode, yNode)));
     }
 }
