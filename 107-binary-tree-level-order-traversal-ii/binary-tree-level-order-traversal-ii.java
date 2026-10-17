@@ -42,10 +42,8 @@ class Solution {
                 level.add(node.val);
             }
 
-            ans.add(level);
+            ans.add(0, level);
         }
-
-        Collections.reverse(ans);
 
         return ans;
     }
