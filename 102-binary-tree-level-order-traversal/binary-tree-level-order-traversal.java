@@ -14,27 +14,31 @@
  * }
  */
 class Solution {
-    // private List<List<Integer>> BFSearch(Queue<TreeNode> childs, List<List<Integer>> ans) {
-    //     if (childs.isEmpty()) {
-    //         return ans;
-    //     }
+    private List<List<Integer>> BFSearch(Queue<TreeNode> childs, List<List<Integer>> ans) {
+        if (childs.isEmpty()) {
+            return ans;
+        }
 
-    //     List<Integer> level = new ArrayList<>();
-    //     TreeNode node = childs.remove();
+        List<Integer> level = new ArrayList<>();
+        int levelSize = childs.size();
 
-    //     if (node.left != null) {
-    //         childs.add(node.left);
-    //     }
+        for (int i = 0; i < levelSize; i++) {
+            TreeNode node = childs.remove(); 
+            
+            if (node.left != null) {
+                childs.add(node.left);
+            }
 
-    //     if (node.right != null) {
-    //         childs.add(node.right);
-    //     }
+            if (node.right != null) {
+                childs.add(node.right);
+            }
 
-    //     level.add(node.val);
+            level.add(node.val);
+        }
 
-    //     ans.add(level);
-    //     return BFSearch(childs, ans);
-    // }
+        ans.add(level);
+        return BFSearch(childs, ans);
+    }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
@@ -46,27 +50,27 @@ class Solution {
         Queue<TreeNode> childs = new LinkedList<>();
         childs.offer(root);
 
-        while (!childs.isEmpty()) {
-            int levelSize = childs.size();
-            List<Integer> level = new ArrayList<>();
+        // while (!childs.isEmpty()) {
+        //     int levelSize = childs.size();
+        //     List<Integer> level = new ArrayList<>();
 
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = childs.remove();
+        //     for (int i = 0; i < levelSize; i++) {
+        //         TreeNode node = childs.remove();
             
-                if (node.left != null) {
-                    childs.add(node.left);
-                }
+        //         if (node.left != null) {
+        //             childs.add(node.left);
+        //         }
 
-                if (node.right != null) {
-                    childs.add(node.right);
-                }
+        //         if (node.right != null) {
+        //             childs.add(node.right);
+        //         }
 
-                level.add(node.val);
-            }
+        //         level.add(node.val);
+        //     }
 
-            ans.add(level);
-        }
+        //     ans.add(level);
+        // }
 
-        return ans;
+        return BFSearch(childs, ans);
     }
 }
