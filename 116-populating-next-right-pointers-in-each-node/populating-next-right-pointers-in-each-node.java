@@ -23,8 +23,6 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        List<List<Integer>> ans = new ArrayList<>();
-
         if (root == null) {
             return root;
         }
