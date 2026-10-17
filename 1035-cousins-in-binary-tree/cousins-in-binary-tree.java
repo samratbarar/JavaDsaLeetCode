@@ -14,29 +14,10 @@
  * }
  */
 class Solution {
-    // public boolean isSiblings(TreeNode node, int x, int y) {
-    //     if (node.left == null || node.right == null) {
-    //         return false;
-    //     }
-
-    //     if ((node.left.val == x || node.left.val == y) && (node.right.val == x || node.right.val == y)) {
-    //         return true;
-    //     }
-
-    //     boolean left = isSiblings(node.left, x, y);
-    //     boolean right = isSiblings(node.right, x, y);
-
-    //     return (left || right);
-    // }
-
     public boolean isCousins(TreeNode root, int x, int y) {
         if (root == null) {
             return false;
         }
-
-        // if (isSiblings(root, x, y)) {
-        //     return false;
-        // }
 
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root); 
@@ -50,7 +31,7 @@ class Solution {
                 TreeNode node = queue.poll();
 
                 if (node.left != null && node.right != null) {
-                    if ((node.left.val == x || node.left.val == y) && (node.right.val == x || node.right.val == y)) {
+                    if ((node.left.val == x && node.right.val == y) || (node.right.val == x && node.left.val == y)) {
                         return false;
                     }
                 }   
