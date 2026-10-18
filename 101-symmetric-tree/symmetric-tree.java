@@ -31,7 +31,7 @@ class Solution {
                 continue;
             }
             
-            if ((leftNode == null && rightNode != null) || (leftNode != null && rightNode == null)) {
+            if (leftNode == null || rightNode == null) {
                 return false;
             }
 
