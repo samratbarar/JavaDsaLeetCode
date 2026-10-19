@@ -14,16 +14,16 @@
  * }
  */
 class Solution {
-    public TreeNode populatedSorted(int[] nums, int start, int end, TreeNode node) {
+    public TreeNode populatedSorted(int[] nums, int start, int end) {
         if (start >= end) {
             return null;
         }
 
         int mid = start + (end - start) / 2;
-        node = new TreeNode(nums[mid]);
+        TreeNode node = new TreeNode(nums[mid]);
 
-        node.left = populatedSorted(nums, start, mid, node.left);
-        node.right = populatedSorted(nums, mid + 1, end, node.right);
+        node.left = populatedSorted(nums, start, mid);
+        node.right = populatedSorted(nums, mid + 1, end);
 
         return node;
     }
@@ -33,10 +33,6 @@ class Solution {
             return null;
         }
 
-        TreeNode root = null;
-        
-        root = populatedSorted(nums, 0, nums.length, root);
-
-        return root;
+        return populatedSorted(nums, 0, nums.length);
     }
 }
