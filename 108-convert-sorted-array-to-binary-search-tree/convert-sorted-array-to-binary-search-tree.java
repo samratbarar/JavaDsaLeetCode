@@ -14,7 +14,6 @@
  * }
  */
 class Solution {
-    TreeNode root = null;
     public TreeNode insert(int value, TreeNode node) {
         if (node == null) {
             node = new TreeNode(value);
@@ -32,15 +31,18 @@ class Solution {
         return node;
     }
 
-    public void populatedSorted(int[] nums, int start, int end) {
+    public TreeNode populatedSorted(int[] nums, int start, int end, TreeNode node) {
         if (start >= end) {
-            return;
+            return null;
         }
 
         int mid = start + (end - start) / 2;
-        root = insert(nums[mid], root);
-        populatedSorted(nums, start, mid);
-        populatedSorted(nums, mid + 1, end);
+        node = new TreeNode(nums[mid]);
+
+        node.left = populatedSorted(nums, start, mid, node.left);
+        node.right = populatedSorted(nums, mid + 1, end, node.right);
+
+        return node;
     }
 
     public TreeNode sortedArrayToBST(int[] nums) {
@@ -48,7 +50,9 @@ class Solution {
             return null;
         }
 
-        populatedSorted(nums, 0, nums.length);
+        TreeNode root = null;
+        
+        root = populatedSorted(nums, 0, nums.length, root);
 
         return root;
     }
