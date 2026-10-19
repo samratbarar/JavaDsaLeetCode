@@ -14,23 +14,6 @@
  * }
  */
 class Solution {
-    public TreeNode insert(int value, TreeNode node) {
-        if (node == null) {
-            node = new TreeNode(value);
-            return node;
-        }
-
-        if (value < node.val) {
-            node.left = insert(value, node.left);
-        }
-
-        if (value > node.val) {
-            node.right = insert(value, node.right);
-        }
-
-        return node;
-    }
-
     public TreeNode populatedSorted(int[] nums, int start, int end, TreeNode node) {
         if (start >= end) {
             return null;
