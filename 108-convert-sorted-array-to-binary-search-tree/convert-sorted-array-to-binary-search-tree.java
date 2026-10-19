@@ -15,11 +15,6 @@
  */
 class Solution {
     TreeNode root = null;
-
-    public void insert(int value) {
-        this.root = insert(value, this.root);
-    }
-
     public TreeNode insert(int value, TreeNode node) {
         if (node == null) {
             node = new TreeNode(value);
@@ -43,7 +38,7 @@ class Solution {
         }
 
         int mid = start + (end - start) / 2;
-        insert(nums[mid]);
+        root = insert(nums[mid], root);
         populatedSorted(nums, start, mid);
         populatedSorted(nums, mid + 1, end);
     }
