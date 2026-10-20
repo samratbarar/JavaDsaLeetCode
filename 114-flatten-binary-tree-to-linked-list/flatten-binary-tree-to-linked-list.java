@@ -19,18 +19,22 @@ class Solution {
             return;
         }
 
-        if (root.left != null) {
-            TreeNode leftRightMost = root.left;
+        TreeNode currNode = root;
 
-            while (leftRightMost.right != null) {
-                leftRightMost = leftRightMost.right;
+        while (currNode != null) {
+            if (currNode.left != null) {
+                TreeNode leftRightMost = currNode.left;
+
+                while (leftRightMost.right != null) {
+                    leftRightMost = leftRightMost.right;
+                }
+
+                leftRightMost.right = currNode.right;
+                currNode.right = currNode.left;
+                currNode.left = null;
             }
 
-            leftRightMost.right = root.right;
-            root.right = root.left;
-            root.left = null;
+            currNode = currNode.right;
         }
-
-        flatten(root.right);
     }
 }
