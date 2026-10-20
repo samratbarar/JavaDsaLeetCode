@@ -14,34 +14,45 @@
  * }
  */
 class Solution {
+    public void storeAllNodes(TreeNode node, Queue<TreeNode> queue) {
+        if (node == null) {
+            return;
+        }
+
+        queue.offer(node);
+
+        if (node.left != null) {
+            queue.offer(node.left);
+            storeAllNodes(node.left, queue);
+        }
+
+        if (node.right != null) {
+            queue.offer(node.right);
+            storeAllNodes(node.right, queue);
+        }
+    }
+     
     public void flatten(TreeNode root) {
         if (root == null) {
             return;
         }
 
-        if (root.left != null) {
-            flatten(root.left);
-        }
+        Queue<TreeNode> queue = new LinkedList<>();
 
-        if (root.right != null) {
-            flatten(root.right);
-        }
+        storeAllNodes(root, queue);
 
-        TreeNode temp = root.right;
+        root = queue.poll(); 
+        root.left = null;
+        root.right = null;
 
-        if (root.left != null) {
-            root.right = root.left;
-            root.left = null;
+        TreeNode node = root;
 
-            TreeNode rightMost = root.right;
+        while (!queue.isEmpty()) {
+            node.right = queue.poll();
 
-            while (rightMost.right != null) {
-                rightMost = rightMost.right;
-            }
-
-            rightMost.right = temp;
-        } else {
-            root.right = temp;
+            node = node.right;
+            node.left = null;
+            node.right = null;
         }
     }
 }
