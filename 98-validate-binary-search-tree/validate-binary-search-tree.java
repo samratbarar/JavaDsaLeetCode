@@ -14,37 +14,22 @@
  * }
  */
 class Solution {
-    public void SaveAllNodes(TreeNode node, Queue<TreeNode> queue) {
+    public boolean isBST(TreeNode node, long min, long max) {
         if (node == null) {
-            return;
+            return true;
         }
 
-        SaveAllNodes(node.left, queue);
-        queue.offer(node);
-        SaveAllNodes(node.right, queue);
-    }
+        if (node.val <= min || node.val >= max){
+            return false;
+        }
 
+        return (isBST(node.left, min, node.val) && isBST(node.right, node.val, max));
+    }
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
-
-        SaveAllNodes(root, queue);
-
-        while (!queue.isEmpty()) {
-            TreeNode curr = queue.remove();
-            if (queue.isEmpty()) {
-                break;
-            }
-            TreeNode next = queue.peek();
-
-            if (next.val <= curr.val) {
-                return false;
-            }
-        }
-
-        return true;
+        return isBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 }
