@@ -23,20 +23,16 @@ class Solution {
 
         int left = kthSmallest(root.left, k);
 
+        if (left != -1) {
+            return left;
+        }
+
         count++;
 
         if (count == k) {
             return root.val;
         }
 
-        int right = -1;
-
-        if (left == -1) {
-            right = kthSmallest(root.right, k);
-        } else {
-            return left;
-        }
-
-        return right;
+        return kthSmallest(root.right, k);
     }
 }
