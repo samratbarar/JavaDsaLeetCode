@@ -16,37 +16,27 @@
 class Solution {
     int count = 0;
 
-    public int findKthSmallest(TreeNode node, int k) {
-        if (node == null) {
+    public int kthSmallest(TreeNode root, int k) {
+        if (root == null) {
             return -1;
         }
 
-        int left = findKthSmallest(node.left, k);
+        int left = kthSmallest(root.left, k);
 
         count++;
 
         if (count == k) {
-            return node.val;
+            return root.val;
         }
 
         int right = -1;
 
         if (left == -1) {
-            right = findKthSmallest(node.right, k);
+            right = kthSmallest(root.right, k);
         } else {
             return left;
         }
 
         return right;
-    }
-
-    public int kthSmallest(TreeNode root, int k) {
-        if (root == null) {
-            return 0;
-        }
-
-        count = 0;
-
-        return findKthSmallest(root, k);
     }
 }
