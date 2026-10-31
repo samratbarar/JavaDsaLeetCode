@@ -15,7 +15,7 @@
  */
 class Solution {
     int count = 0;
-    
+
     public int findKthSmallest(TreeNode node, int k) {
         if (node == null) {
             return -1;
@@ -33,6 +33,8 @@ class Solution {
 
         if (left == -1) {
             right = findKthSmallest(node.right, k);
+        } else {
+            return left;
         }
 
         return left == -1 ? right : left;
