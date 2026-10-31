@@ -37,13 +37,15 @@ class Solution {
             return left;
         }
 
-        return left == -1 ? right : left;
+        return right;
     }
 
     public int kthSmallest(TreeNode root, int k) {
         if (root == null) {
             return 0;
         }
+
+        count = 0;
 
         return findKthSmallest(root, k);
     }
