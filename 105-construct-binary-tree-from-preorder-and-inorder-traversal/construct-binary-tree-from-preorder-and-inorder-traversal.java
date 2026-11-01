@@ -14,36 +14,31 @@
  * }
  */
 class Solution {
-    public TreeNode build(TreeNode node, int[] pre, int[] in) {
-        if (pre.length == 0) {
+    public TreeNode build(int[] pre, int[] in, int preStart, int inStart, int inEnd) {
+        TreeNode node = new TreeNode();
+
+        if (inStart > inEnd) {
             return null;
         }
 
-        TreeNode left = new TreeNode();
-        TreeNode right = new TreeNode();
 
-        node.val = pre[0];
-
-        node.left = left;
-        node.right = right;
+        node.val = pre[preStart];
 
         int i = 0;
 
-        for (i = 0; i < in.length; i++) {
-            if (in[i] == pre[0]) {
+        for (i = inStart; i <= inEnd; i++) {
+            if (in[i] == pre[preStart]) {
                 break;
             }
         }
 
-        node.left = build(node.left, Arrays.copyOfRange(pre, 1, i + 1), Arrays.copyOfRange(in, 0, i));
-        node.right = build(node.right, Arrays.copyOfRange(pre, i + 1, pre.length), Arrays.copyOfRange(in, i + 1, in.length));
-
+        node.left = build(pre, in, preStart + 1, inStart, i - 1);
+        node.right = build(pre, in, i - inStart + 1 + preStart, i + 1, inEnd);
+        
         return node;
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        TreeNode root = new TreeNode(preorder[0]);
-
-        return build(root, preorder, inorder);
+        return build(preorder, inorder, 0, 0, inorder.length-1);
     }
 }
