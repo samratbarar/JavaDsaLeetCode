@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+    HashMap<Integer, Integer> map = new HashMap<>();
+
     public TreeNode build(int[] pre, int[] in, int preStart, int inStart, int inEnd) {
         TreeNode node = new TreeNode();
 
@@ -24,13 +26,7 @@ class Solution {
 
         node.val = pre[preStart];
 
-        int i = 0;
-
-        for (i = inStart; i <= inEnd; i++) {
-            if (in[i] == pre[preStart]) {
-                break;
-            }
-        }
+        int i = map.get(pre[preStart]);
 
         node.left = build(pre, in, preStart + 1, inStart, i - 1);
         node.right = build(pre, in, i - inStart + 1 + preStart, i + 1, inEnd);
@@ -39,6 +35,10 @@ class Solution {
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+
         return build(preorder, inorder, 0, 0, inorder.length-1);
     }
 }
