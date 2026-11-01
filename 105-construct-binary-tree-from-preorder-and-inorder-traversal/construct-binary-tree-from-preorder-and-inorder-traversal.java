@@ -25,8 +25,7 @@ class Solution {
 
 
         node.val = pre[preStart];
-
-        int i = map.get(pre[preStart]);
+        int i = map.get(node.val);
 
         node.left = build(pre, in, preStart + 1, inStart, i - 1);
         node.right = build(pre, in, i - inStart + 1 + preStart, i + 1, inEnd);
