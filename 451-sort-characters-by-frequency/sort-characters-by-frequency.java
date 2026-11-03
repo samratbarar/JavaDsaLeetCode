@@ -12,10 +12,6 @@ class Solution {
         StringBuilder ans = new StringBuilder();
 
         for (int i = len; i > 0; i--) {
-            if (map.isEmpty()) {
-                break;
-            }
-
             for (Map.Entry<Character, Integer> entry : map.entrySet()) {
                 Character key = entry.getKey();
                 Integer value = entry.getValue();
