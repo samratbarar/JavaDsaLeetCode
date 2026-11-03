@@ -31,11 +31,8 @@ class Solution {
 
         for (int i = lar; i > 0; i--) {
             ArrayList<Character> list = characters[i];
-            int listLen = list.size();
 
-            for (int j = 0; j < listLen; j++) {
-                char key = list.get(j);
-
+            for (char key : list) {
                 for (int k = 0; k < i; k++) {
                     ans.append(key);
                 }
