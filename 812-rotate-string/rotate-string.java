@@ -15,8 +15,8 @@ class Solution {
             }
         }
 
-        while (!indexes.isEmpty()) {
-            int idx = indexes.remove(0);
+        for (int j = 0; j < indexes.size(); j++) {
+            int idx = indexes.get(j);
             boolean isSame = true;
 
             for (int i = 0; i < len; i++) {
