@@ -7,20 +7,15 @@ class Solution {
             char chS = s.charAt(i);
             char chT = t.charAt(i);
 
-            if (map1.containsKey(chS)) {
-                char val = map1.get(chS);
+            Character key1 = map1.get(chS);
+            Character key2 = map2.get(chT);
 
-                if (val != chT) {
-                    return false;
-                }
+            if (key1 != null && key1 != chT) {
+                return false;
             }
 
-            if (map2.containsKey(chT)) {
-                char val = map2.get(chT);
-
-                if (val != chS) {
-                    return false;
-                }
+            if (key2 != null && key2 != chS) {
+                return false;
             }
 
             map1.put(chS, chT);
