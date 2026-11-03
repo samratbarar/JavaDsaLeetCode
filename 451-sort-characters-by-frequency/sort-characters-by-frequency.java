@@ -17,7 +17,7 @@ class Solution {
         ArrayList<Character>[] characters = new ArrayList[lar + 1];
 
         for (int i = 0; i < lar + 1; i++) {
-            characters[i] = new ArrayList<>();
+            characters[i] = new ArrayList<Character>();
         }
 
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
