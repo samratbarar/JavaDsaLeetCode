@@ -11,24 +11,20 @@ class Solution {
 
         StringBuilder ans = new StringBuilder();
 
-        while (!map.isEmpty()) {
-            int lar = Integer.MIN_VALUE;
-            char keyL = 'a'; 
+        for (int i = len; i > 0; i--) {
+            if (map.isEmpty()) {
+                break;
+            }
 
             for (Map.Entry<Character, Integer> entry : map.entrySet()) {
                 Character key = entry.getKey();
                 Integer value = entry.getValue();
 
-                if (value > lar) {
-                    lar = value;
-                    keyL = key;
+                if (value == i) {
+                    for (int j = 0; j < value; j++) {
+                        ans.append(key);
+                    }
                 }
-            }
-
-            map.remove(keyL);
-
-            for (int i = 0; i < lar; i++) {
-                ans.append(keyL);
             }
         }
 
