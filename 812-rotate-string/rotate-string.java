@@ -6,34 +6,38 @@ class Solution {
             return false;
         }
 
-        char starting = goal.charAt(0);
-        ArrayList<Integer> indexes = new ArrayList<>();
-
-        for (int i = 0; i < len; i++) {
-            if (s.charAt(i) == starting) {
-                indexes.add(i);
-            }
+        if (len == 0) {
+            return true;
         }
 
-        for (int j = 0; j < indexes.size(); j++) {
-            int idx = indexes.get(j);
-            boolean isSame = true;
+        char starting = goal.charAt(0);
 
-            for (int i = 0; i < len; i++) {
-                if (s.charAt(idx) != goal.charAt(i)) {
-                    isSame = false;
-                    break;
+        s += s;
+
+        for (int i = 0; i < 2*len; i++) {
+            char ch = s.charAt(i);
+
+            if (ch == starting) {
+                boolean isSame = true;
+                int idx = 0;
+
+                for (int j = i; j < i + len; j++) {
+                    if (j == 2*len) {
+                        return false;
+                    }
+                    
+                    if (s.charAt(j) != goal.charAt(idx)) {
+                        isSame = false;
+                        break;
+                    } 
+                    idx++;
                 }
 
-
-                idx = (idx + 1) % len;
-            }
-
-            if (isSame) {
-                return true;
+                if (isSame) {
+                    return true;
+                }
             }
         }
-
 
         return false;
     }
