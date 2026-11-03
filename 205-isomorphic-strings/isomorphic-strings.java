@@ -14,19 +14,8 @@ class Solution {
                 }
             }
 
-            if (map.containsValue(chT)) {
-                char k = 'a';
-
-                for (Map.Entry<Character, Character> entry : map.entrySet()) {
-                    if (chT == entry.getValue()) {
-                        k = entry.getKey();
-                        break; 
-                    }
-                }
-
-                if (k != chS) {
-                    return false;
-                } 
+            if (map.containsValue(chT) && !map.containsKey(chS)) {
+                return false;
             }
 
             map.put(chS, chT);
