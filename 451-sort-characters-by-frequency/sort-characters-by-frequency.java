@@ -9,7 +9,7 @@ class Solution {
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
 
-        StringBuilder ans = new StringBuilder("");
+        StringBuilder ans = new StringBuilder();
 
         while (!map.isEmpty()) {
             int lar = Integer.MIN_VALUE;
