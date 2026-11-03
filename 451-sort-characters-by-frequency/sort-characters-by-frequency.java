@@ -30,16 +30,11 @@ class Solution {
         StringBuilder ans = new StringBuilder();
 
         for (int i = lar; i > 0; i--) {
-            ArrayList list = characters[i];
-
-            if (list.isEmpty()) {
-                continue;
-            }
-
+            ArrayList<Character> list = characters[i];
             int listLen = list.size();
 
             for (int j = 0; j < listLen; j++) {
-                char key = (char)list.get(j);
+                char key = list.get(j);
 
                 for (int k = 0; k < i; k++) {
                     ans.append(key);
