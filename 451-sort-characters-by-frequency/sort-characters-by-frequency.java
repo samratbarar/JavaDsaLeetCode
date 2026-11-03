@@ -14,17 +14,35 @@ class Solution {
             }
         }
 
+        ArrayList<Character>[] characters = new ArrayList[lar + 1];
+
+        for (int i = 0; i < lar + 1; i++) {
+            characters[i] = new ArrayList<>();
+        }
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            Character key = entry.getKey();
+            Integer value = entry.getValue();
+
+            characters[value].add(key);
+        }
+
         StringBuilder ans = new StringBuilder();
 
         for (int i = lar; i > 0; i--) {
-            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-                Character key = entry.getKey();
-                Integer value = entry.getValue();
+            ArrayList list = characters[i];
 
-                if (value == i) {
-                    for (int j = 0; j < value; j++) {
-                        ans.append(key);
-                    }
+            if (list.isEmpty()) {
+                continue;
+            }
+
+            int listLen = list.size();
+
+            for (int j = 0; j < listLen; j++) {
+                char key = (char)list.get(j);
+
+                for (int k = 0; k < i; k++) {
+                    ans.append(key);
                 }
             }
         }
