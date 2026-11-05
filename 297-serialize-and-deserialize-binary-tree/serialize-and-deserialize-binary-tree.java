@@ -38,7 +38,6 @@ public class Codec {
         if (counter < data.length()) {
             if (data.charAt(counter) == 'N') {
                 counter += 2;
-
                 return null;
             }
 
