@@ -11,23 +11,22 @@ public class Codec {
     StringBuilder str = new StringBuilder("");
 
     // Encodes a tree to a single string.
-    private String serHelper(TreeNode node) {
+    private void serHelper(TreeNode node) {
         if (node == null) {
             str.append("N,");
-            return str.toString();
+            return;
         }
 
         str.append(node.val).append(",");
 
         serHelper(node.left);
         serHelper(node.right);
-
-        return str.toString();
     }
 
     public String serialize(TreeNode root) {
         str.setLength(0);
-        return serHelper(root);
+        serHelper(root);
+        return str.toString();
     }
 
 
@@ -41,21 +40,11 @@ public class Codec {
                 return null;
             }
 
-            int start = counter;
-            char ch = data.charAt(counter);
+            int end = data.indexOf(',', counter);
+            int value = Integer.parseInt(data.substring(counter, end));
+            counter = end + 1;
 
-            while (ch != ',') {
-                counter++;
-
-                if (counter == data.length()) {
-                    break;
-                }
-
-                ch = data.charAt(counter);
-            }
-
-            TreeNode node = new TreeNode(Integer.parseInt(data.substring(start, counter)));
-            counter++;
+            TreeNode node = new TreeNode(value);
 
             node.left = deserHelper(data); 
             node.right = deserHelper(data); 
