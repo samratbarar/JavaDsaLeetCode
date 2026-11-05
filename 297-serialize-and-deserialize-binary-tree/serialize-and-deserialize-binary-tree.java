@@ -17,8 +17,7 @@ public class Codec {
             return str.toString();
         }
 
-        int value = node.val;
-        str.append(Integer.toString(value)).append(",");
+        str.append(node.val).append(",");
 
         serHelper(node.left);
         serHelper(node.right);
@@ -70,7 +69,6 @@ public class Codec {
 
     public TreeNode deserialize(String data) {
         counter = 0;
-
         return deserHelper(data);
     }
 }
