@@ -12,8 +12,12 @@ class Solution {
             if (nums[i % len] > nums[(i + 1) % len]) {
                 count++;
             }
+
+            if (count > 1) {
+                return false;
+            }
         }
 
-        return count < 2;
+        return true;
     }
 }
