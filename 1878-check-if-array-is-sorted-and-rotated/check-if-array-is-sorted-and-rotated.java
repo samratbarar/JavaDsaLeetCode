@@ -6,22 +6,14 @@ class Solution {
             return true;
         }
 
-        int start = 0;
+        int count = 0;
 
-        while (start < len - 1 && nums[start] <= nums[start + 1]) {
-            start++;
-        }
-
-        start++;
-
-        for (int i = 0; i < len - 1; i++) {
-            int idx = (start + i) % len;
-            int nextIdx = (idx + 1) % len;
-            if (nums[idx] > nums[nextIdx]) {
-                return false;
+        for (int i = 0; i < len; i++) {
+            if (nums[i % len] > nums[(i + 1) % len]) {
+                count++;
             }
         }
 
-        return true;
+        return count < 2;
     }
 }
