@@ -9,7 +9,7 @@ class Solution {
         int count = 0;
 
         for (int i = 0; i < len; i++) {
-            if (nums[i % len] > nums[(i + 1) % len]) {
+            if (nums[i] > nums[(i + 1) % len]) {
                 count++;
             }
 
