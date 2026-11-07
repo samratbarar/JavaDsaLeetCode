@@ -14,13 +14,13 @@ class Solution {
             nums[idx - i - 1] = temp;
         }
 
-        int dec = 0;
+        int left = idx;
+        int right = len - 1;
 
-        for (int i = idx; i < (idx + len) / 2; i++) {
-            int temp = nums[i];
-            nums[i] = nums[len - dec - 1];
-            nums[len - dec - 1] = temp;
-            dec++;
+        while (left < right) {
+            int temp = nums[left];
+            nums[left++] = nums[right];
+            nums[right--] = temp;
         }
         
         for (int i = 0; i < len / 2; i++) {
