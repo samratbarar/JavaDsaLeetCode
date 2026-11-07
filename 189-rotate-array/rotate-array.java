@@ -1,4 +1,12 @@
 class Solution {
+    private void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            int temp = nums[left];
+            nums[left++] = nums[right];
+            nums[right--] = temp;
+        }
+    }
+
     public void rotate(int[] nums, int k) {
         int len = nums.length;
 
@@ -8,25 +16,8 @@ class Solution {
 
         int idx = len - (k % len);
 
-        for (int i = 0; i < idx / 2; i++) {
-            int temp = nums[i];
-            nums[i] = nums[idx - i - 1];
-            nums[idx - i - 1] = temp;
-        }
-
-        int left = idx;
-        int right = len - 1;
-
-        while (left < right) {
-            int temp = nums[left];
-            nums[left++] = nums[right];
-            nums[right--] = temp;
-        }
-        
-        for (int i = 0; i < len / 2; i++) {
-            int temp = nums[i];
-            nums[i] = nums[len - i - 1];
-            nums[len - i - 1] = temp;
-        }
+        reverse(nums, 0, idx - 1);
+        reverse(nums, idx, len - 1);
+        reverse(nums, 0, len - 1);
     }
 }
