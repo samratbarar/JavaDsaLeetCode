@@ -4,15 +4,18 @@ class Solution {
             return;
         }
 
-        for (int i = nums.length - 1; i >= 0; i--) {
-            if (nums[i] == 0) {
-                for (int j = i; j < nums.length; j++) {
-                    if (j != nums.length - 1) {
-                        nums[j] = nums[j + 1];
-                    }
-                }
+        int idxZero = -1;
 
-                nums[nums.length - 1] = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (idxZero == -1 && nums[i] == 0) {
+                idxZero = i;
+            } 
+
+            if (idxZero != -1 && nums[i] != 0) {
+                int temp = nums[i];
+                nums[i] = nums[idxZero];
+                nums[idxZero] = temp;
+                idxZero++;
             }
         }
     }
