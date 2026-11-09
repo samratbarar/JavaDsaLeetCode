@@ -11,7 +11,7 @@ class Solution {
                 idxZero = i;
             } 
 
-            if (idxZero != -1 && nums[i] != 0) {
+            if (idxZero != -1 && nums[i] != 0 && idxZero != i) {
                 int temp = nums[i];
                 nums[i] = nums[idxZero];
                 nums[idxZero] = temp;
