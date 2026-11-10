@@ -1,14 +1,14 @@
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        if (!wordList.contains(endWord)) {
+        Set<String> words = new HashSet<>(wordList);
+
+        if (!words.contains(endWord)) {
             return 0;
         }
 
         Queue<String> queue = new LinkedList<>();
-        Set<String> visited = new HashSet<>();
-        Set<String> words = new HashSet<>(wordList);
-        visited.add(beginWord);
         queue.offer(beginWord);
+        words.remove(beginWord);
         int length = 0;
 
         while(!queue.isEmpty()) {
@@ -22,6 +22,10 @@ class Solution {
                     char[] temp = current.toCharArray();
 
                     for (char ch = 'a'; ch <= 'z'; ch++) {
+                        if (temp[j] == ch) {
+                            continue;
+                        }
+
                         temp[j] = ch;
                         String newWord = new String(temp);
 
@@ -29,9 +33,9 @@ class Solution {
                             return (length+1);
                         }
 
-                        if (words.contains(newWord) && !visited.contains(newWord)) {
+                        if (words.contains(newWord)) {
                             queue.offer(newWord);
-                            visited.add(newWord);
+                            words.remove(newWord);
                         }
                     }
                 }
