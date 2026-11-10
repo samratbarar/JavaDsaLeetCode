@@ -30,10 +30,6 @@ class Solution {
     }
 
     public boolean findTarget(TreeNode root, int k) {
-        if (root == null) {
-            return false;
-        }
-
         set = new HashSet<>();
         return find(root, k);
     }
