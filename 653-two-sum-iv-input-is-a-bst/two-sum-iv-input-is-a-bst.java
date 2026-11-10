@@ -14,15 +14,19 @@
  * }
  */
 class Solution {
-    List<Integer> list;
-    public void createList(TreeNode node) {
+    Set<Integer> set;
+    private boolean find(TreeNode node, int k) {
         if (node == null) {
-            return;
+            return false;
         }
 
-        createList(node.left);
-        list.add(node.val);
-        createList(node.right);
+        if (set.contains(k - node.val)) {
+            return true;
+        } else {
+            set.add(node.val);
+        }
+
+        return find(node.left, k) || find(node.right, k);
     }
 
     public boolean findTarget(TreeNode root, int k) {
@@ -30,25 +34,7 @@ class Solution {
             return false;
         }
 
-        list = new ArrayList<>();
-
-        createList(root);
-
-        int left = 0, right = list.size() - 1;
-
-        while (left < right) {
-            int sum = list.get(left) + list.get(right);
-            if (sum == k) {
-                return true;
-            }
-
-            if (sum < k) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-
-        return false;
+        set = new HashSet<>();
+        return find(root, k);
     }
 }
