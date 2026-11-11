@@ -9,7 +9,7 @@ class Solution {
             }
         }
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = idx; i < nums.length; i++) {
             if (nums[i] == 1) {
                 nums[i] = nums[idx];
                 nums[idx] = 1;
